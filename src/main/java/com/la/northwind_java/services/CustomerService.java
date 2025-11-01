@@ -6,9 +6,9 @@ package com.la.northwind_java.services;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.la.northwind_java.dtos.CustomerCreateDTO;
-import com.la.northwind_java.dtos.CustomerDTO;
-import com.la.northwind_java.dtos.CustomerUpdateDTO;
+import com.la.northwind_java.dtos.customer.CustomerCreateDTO;
+import com.la.northwind_java.dtos.customer.CustomerDTO;
+import com.la.northwind_java.dtos.customer.CustomerUpdateDTO;
 
 
 public interface CustomerService {

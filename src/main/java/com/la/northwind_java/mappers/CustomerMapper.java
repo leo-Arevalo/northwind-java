@@ -9,11 +9,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-
-import com.la.northwind_java.dtos.CustomerCreateDTO;
-import com.la.northwind_java.dtos.CustomerDTO;
-import com.la.northwind_java.dtos.CustomerUpdateDTO;
-
+import com.la.northwind_java.dtos.customer.CustomerCreateDTO;
+import com.la.northwind_java.dtos.customer.CustomerDTO;
+import com.la.northwind_java.dtos.customer.CustomerUpdateDTO;
 import com.la.northwind_java.models.Customer;
 
 
@@ -76,69 +74,7 @@ public interface CustomerMapper {
 	@Mapping( target = "orders", ignore = true) //No sobrescribir pedidos
 	void updateEntity(CustomerUpdateDTO customerUpdateDTO, @MappingTarget Customer customer);
 	
-	/**
-	 * Maps a list of Order entities to a list of OrderDTO.
-	 */
-	//@Named("mapOrdersList")
-	//default List<OrderDTO> mapOrdersList(List<Order> orders){
-	//	return orders != null ? orders.stream().map(this::toOrderDTO).toList() : null;
-	//}
 	
-	/**
-	 * Converts an Order entity to an OrderDTO (for nested mapping in CustomerDTO)
-	 */
-	
-	/*
-	@Named("toOrderDTO")
-	@Mapping(source = "id", target = "orderID")
-	@Mapping(source = "customer", target = "customer")
-	@Mapping(source = "employee", target = "employee")
-	@Mapping(source = "orderDate", target = "orderDate")
-	@Mapping(source = "shippedDate", target = "shipperDate")
-	@Mapping(source = "shipper", target = "shipper")
-	@Mapping(source = "shipName", target = "shipName")
-	@Mapping(source = "shipAddress", target = "shipAddress")
-	@Mapping(source = "shipCity", target = "shipCity")
-	@Mapping(source = "shipStateProvince", target = "shipStateProvince")
-	@Mapping(source = "shipPostalCode", target = "shipPostalCode")
-	@Mapping(source = "shipCountryRegion", target = "shipCountryRegion")
-	@Mapping(source = "shippingFee", target = "shippingFee")
-	@Mapping(source = "taxes", target = "taxes")
-	@Mapping(source = "paymentType", target = "paymentType")
-	@Mapping(source = "paidDate", target = "paidDate")
-	@Mapping(source = "notes", target = "notes")
-	@Mapping(source = "taxRate", target = "taxRate")
-	@Mapping(source = "taxStatus", target = "taxStatus")
-	@Mapping(source = "status", target = "status")
-	@Mapping(source = "orderDetails", target = "orderDetails", qualifiedByName = "mapOrderDetailsList")
-	default OrderDTO toOrderDTO(Order order) {
-		if(order == null) return null;
-		return new OrderDTO(
-				  order.getOrderID(),
-		            null, // Customer will be handled in OrderMapper
-		            null, // Employee will be handled in OrderMapper
-		            order.getOrderDate(),
-		            order.getShippedDate(),
-		            null, // Shipper will be handled in OrderMapper
-		            order.getShipName(),
-		            order.getShipAddress(),
-		            order.getShipCity(),
-		            order.getShipStateProvince(),
-		            order.getShipPostalCode(),
-		            order.getShipCountryRegion(),
-		            order.getShippingFee(),
-		            order.getTaxes(),
-		            order.getPaymentType(),
-		            order.getPaidDate(),
-		            order.getNotes(),
-		            order.getTaxRate(),
-		            null, // TaxStatus will be handled in OrderMapper
-		            null, // Status will be handled in OrderMapper
-		            null // OrderDetails will be handled in OrderMapper
-		            );
-	}
-	
-	*/
 	
 	/**
 	 * Normalizes data after mapping a CustomerDTO to a Customer entity.

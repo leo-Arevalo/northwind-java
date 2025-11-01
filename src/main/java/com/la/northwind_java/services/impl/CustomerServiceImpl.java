@@ -1,8 +1,6 @@
 package com.la.northwind_java.services.impl;
 
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
@@ -11,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.la.northwind_java.config.exceptions.DatabaseException;
 import com.la.northwind_java.config.exceptions.ResourceNotFoundException;
-import com.la.northwind_java.dtos.CustomerCreateDTO;
-import com.la.northwind_java.dtos.CustomerDTO;
-import com.la.northwind_java.dtos.CustomerUpdateDTO;
+import com.la.northwind_java.dtos.customer.CustomerCreateDTO;
+import com.la.northwind_java.dtos.customer.CustomerDTO;
+import com.la.northwind_java.dtos.customer.CustomerUpdateDTO;
 import com.la.northwind_java.mappers.CustomerMapper;
 import com.la.northwind_java.models.Customer;
 import com.la.northwind_java.repositories.CustomerRepository;
@@ -102,7 +100,7 @@ public class CustomerServiceImpl implements CustomerService{
 			Customer updatedCustomer = customerRepository.save(customer);
 			return customerMapper.toCustomerDTO(updatedCustomer);
 		}catch(DataAccessException e) {
-			throw new DatabaseException("Errror updating customer with id" + id, e);
+			throw new DatabaseException("Error updating customer with id" + id, e);
 		}
 		
 	}

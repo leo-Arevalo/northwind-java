@@ -30,9 +30,9 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 
-import com.la.northwind_java.dtos.CustomerDTO;
 import com.la.northwind_java.dtos.OrderDTO;
 import com.la.northwind_java.dtos.OrderUpdateDTO;
+import com.la.northwind_java.dtos.customer.CustomerDTO;
 import com.la.northwind_java.services.OrderService;
 
 

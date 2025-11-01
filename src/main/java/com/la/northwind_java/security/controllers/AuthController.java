@@ -3,6 +3,8 @@ package com.la.northwind_java.security.controllers;
 
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,9 +41,6 @@ public class AuthController {
 	public Map<String, String> login(@RequestBody Map<String, String> request) {
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 				request.get("username"), request.get("password")));
-				System.out.println("Aca deberia mostrar username y password");
-				System.out.println(request.get("username"));
-				System.out.println(request.get("password"));
 				
 		String token = jwtUtils.generateToken(userDetailsService.loadUserByUsername(request.get("username")));
 		
@@ -62,7 +61,16 @@ public class AuthController {
 				.orElseThrow(()-> new RuntimeException("Invalid refresh token"));
 	}
 	
-	
+	@PostMapping("/logout")
+	public ResponseEntity<?> logout(@RequestBody Map<String, String> request){
+		String refreshToken = request.get("refreshToken");
+		return refreshTokenService.findByToken(refreshToken)
+										.map(token -> {
+											refreshTokenService.deleteByUserId(token.getUser().getId());
+											return ResponseEntity.ok("Logout exitoso. Refresh Token eliminado.");
+										})
+										.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("token not found"));
+	}
 	
 	
 	

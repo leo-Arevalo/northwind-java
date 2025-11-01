@@ -26,6 +26,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import com.la.northwind_java.models.*;
+
 /**
  * Represents a purchase order in the system.
  * 

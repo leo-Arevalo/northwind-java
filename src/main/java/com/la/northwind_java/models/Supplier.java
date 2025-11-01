@@ -106,11 +106,11 @@ public class Supplier {
 	
 	@Size(max = 50)
 	@Column(name = "state_province", length = 50)
-	private String statePronvice;
+	private String stateProvince;
 	
 	@Size(max = 15)
 	@Column(name = "zip_postal_code", length = 15)
-	private String ZipPostalCode;
+	private String zipPostalCode;
 	
 	@Size(max = 50)
     @Column(name = "country_region", length = 50)

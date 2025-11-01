@@ -1,13 +1,6 @@
 
 package com.la.northwind_java.controllers;
 
-
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import org.apache.catalina.User;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +25,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 import com.la.northwind_java.dtos.*;
-import com.la.northwind_java.security.models.Role;
+import com.la.northwind_java.dtos.customer.CustomerCreateDTO;
+import com.la.northwind_java.dtos.customer.CustomerDTO;
+import com.la.northwind_java.dtos.customer.CustomerUpdateDTO;
+import com.la.northwind_java.security.utils.SecurityUtils;
 
 
 
@@ -65,48 +61,22 @@ public class CustomerController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	//PARA IMPLEMENTAR
 	/**
+	 * Un customer puede ver sus datos, pero no de otros
+	 * @param id
+	 * @param authentication
+	 * @return
+	 */
 	@GetMapping("customer/{id}")
 	public ResponseEntity<CustomerDTO> getCustomer(@PathVariable Long id,
 													Authentication authentication){
-		//getPrincipal devuelve el objeto principal Autenticado puede ser un UserDetails
-		User user = (User) authentication.getPrincipal();
+													
+		SecurityUtils.validateAccessToCustomer(id, authentication);										
+													
+		CustomerDTO customerDTO = customerService.getCustomerById(id);
+		return ResponseEntity.ok(customerDTO);
 		
-		
-		
-		
-		
-		if(user.hasRole("ROLE_ADMIN") || user.hasRole("ROLE_EMPLOYEE")) {
-			return ResponseEntity.ok(customerService.findById(id));
-		}
-		
-		
-		
-		 // Un admin o employee puede ver cualquier cliente
-		 
-		System.out.println(user.hasRole("hola"));
-		if(user.hasRole("ROLE_ADMIN") || user.getRoles().contains("ROLE_EMPLOYEE")) {
-			return ResponseEntity.ok(customerService.findById(id));
-		}
-		
-		//Un cliente solo puede ver su propia informacion
-		if(user.getRoles().contains("ROLE_CUSTOMER") && user.getId().equals(id)) {
-			return ResponseEntity.ok((customerService.findById());
-		}
-		
-		return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
 	}
-	
-	
-	*/
-	
-	
 	
 	
 	@Operation(summary = "Create a new customer", description = "Requires ADMIN role")

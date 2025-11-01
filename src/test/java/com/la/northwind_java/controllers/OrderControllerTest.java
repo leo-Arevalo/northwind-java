@@ -33,11 +33,11 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.la.northwind_java.config.exceptions.ResourceNotFoundException;
-import com.la.northwind_java.dtos.CustomerDTO;
 import com.la.northwind_java.dtos.EmployeeDTO;
 import com.la.northwind_java.dtos.OrderCreateDTO;
 import com.la.northwind_java.dtos.OrderDTO;
 import com.la.northwind_java.dtos.OrderUpdateDTO;
+import com.la.northwind_java.dtos.customer.CustomerDTO;
 import com.la.northwind_java.services.OrderService;
 
 @TestPropertySource(locations = "classpath:application-test.properties")

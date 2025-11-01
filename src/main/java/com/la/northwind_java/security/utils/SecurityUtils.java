@@ -14,6 +14,7 @@ import com.la.northwind_java.security.services.UserDetailsServiceImpl;
 
 public class SecurityUtils {
 	
+	
 	public static void validateAccessToCustomer(Long requestedCustomerId,
 											Authentication authentication) {
 		User user = getUser(authentication);
@@ -25,6 +26,8 @@ public class SecurityUtils {
 		throw new AccessDeniedException("No tienes permiso para acceder a este cliente.");
 	}
 	
+	
+	
 	public static void validateAccessToEmployee(Long requestedEmployeeId,
 												Authentication authentication) {
 		User user = getUser(authentication);
@@ -32,6 +35,8 @@ public class SecurityUtils {
 		if(hasRole(user, "ROLE_EMPLOYEE") && user.getId().equals(requestedEmployeeId))return;
 		throw new AccessDeniedException("No tienes permiso para acceder a este empleado.");
 	}
+	
+	
 	public static void validateAccessToOrderCustomer(Long requestedEmployeeId,
 												Authentication authentication) {
 		User user = getUser(authentication);
@@ -39,6 +44,7 @@ public class SecurityUtils {
 		if(hasRole(user, "ROLE_CUSTOMER") && user.getId().equals(requestedEmployeeId))return;
 		throw new AccessDeniedException("No tienes permiso para acceder a esta orden.");
 	}
+	
 	
 	private static User getUser(Authentication authentication) {
 		Object principal = authentication.getPrincipal();
@@ -48,6 +54,7 @@ public class SecurityUtils {
 		}
 		return (User) principal;
 	}
+	
 	
 	private static boolean hasRole(User user, String role) {
 		for(GrantedAuthority authority : user.getAuthorities()) {

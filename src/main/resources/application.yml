@@ -1,0 +1,25 @@
+
+
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    display-request-duration: true
+    doc-expansion: none
+    filter: true
+
+# Optional: configuración para mostrar título en Swagger
+info:
+  application:
+    name: Northwind Java API
+    description: API RESTful para gestionar datos de Northwind usando Spring Boot
+    version: 1.0.0
+
+
+
+
+
